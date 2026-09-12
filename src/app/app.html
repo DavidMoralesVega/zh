@@ -1,0 +1,25 @@
+<main class="mx-auto max-w-5xl p-6">
+  <h1 class="mb-4 text-3xl font-bold text-green-700">Personajes de Rick y Morty</h1>
+
+  <input
+    #name
+    type="search"
+    placeholder="Buscar por nombre…"
+    (input)="search(name.value)"
+    class="mb-6 w-full rounded-lg border border-gray-300 bg-white px-4 py-2 focus:border-green-600 focus:outline-none"
+  />
+
+  <section class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    @for (character of list(); track character.id) {
+      <article class="overflow-hidden rounded-xl bg-white shadow">
+        <img [src]="character.image" [alt]="character.name" class="aspect-square w-full object-cover" />
+        <div class="p-4">
+          <h2 class="text-lg font-semibold">{{ character.name }}</h2>
+          <p class="text-sm text-gray-600">{{ status(character) }} · {{ character.species }}</p>
+        </div>
+      </article>
+    } @empty {
+      <p class="col-span-full text-gray-500">No hay personajes para mostrar.</p>
+    }
+  </section>
+</main>
